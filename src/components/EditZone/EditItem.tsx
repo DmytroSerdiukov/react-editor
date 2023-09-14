@@ -6,9 +6,9 @@ import Container from "@mui/material/Container";
 import ListItemText from "@mui/material/ListItemText";
 import { ICONS } from "../ToolBar/Icons";
 import { TextField } from "@mui/material";
-type IItemProps = {
-  title: string;
-};
+import { IItemProps } from "./types";
+import Positions from "./Positions";
+import DeleteCopy from "./DeleteCopy";
 
 const EditItem: FC<IItemProps> = ({ title = "Headline" }): JSX.Element => {
   const [isEdited, setEdited] = useState(false);
@@ -18,6 +18,7 @@ const EditItem: FC<IItemProps> = ({ title = "Headline" }): JSX.Element => {
   return (
     <div
       style={{
+        position: "relative",
         width: 475,
         marginTop: 3,
         backgroundColor: isEdited ? "#D9E7FF" : "#fff",
@@ -26,6 +27,21 @@ const EditItem: FC<IItemProps> = ({ title = "Headline" }): JSX.Element => {
         alignItems: "center",
       }}
     >
+      {isEdited ? (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            position: "absolute",
+            right: 35,
+            top: -20,
+          }}
+        >
+          <Positions />
+          <DeleteCopy />
+        </div>
+      ) : null}
       <div
         style={{
           display: "flex",
