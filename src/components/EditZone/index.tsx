@@ -4,7 +4,14 @@ import EditItem from "./EditItem";
 
 const EditZone: FC = (): JSX.Element => {
   return (
-    <Container sx={{ backgroundColor: "#F6F9FE", height: 700, width: 530 }}>
+    <Container
+      sx={{
+        backgroundColor: "#F6F9FE",
+        height: 700,
+        width: 530,
+        paddingTop: 2,
+      }}
+    >
       <EditItem title="Headline" />
     </Container>
   );
