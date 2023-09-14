@@ -12,7 +12,7 @@ const App: FC = (): JSX.Element => {
     <ThemeProvider theme={defaultTheme}>
       <Container maxWidth={false}>
         <Header title={"REACT EDITOR Test"} />
-        <main>
+        <main style={{ display: "flex" }}>
           <ToolBar />
           <EditZone />
         </main>
