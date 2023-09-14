@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import Container from "@mui/material/Container";
-import Item from "../ToolBar/Item";
+import EditItem from "./EditItem";
 
 const EditZone: FC = (): JSX.Element => {
   return (
-    <Container>
-      <Item title={"Headline"} />
+    <Container sx={{ backgroundColor: "#F6F9FE", height: 700, width: 530 }}>
+      <EditItem title="Headline" />
     </Container>
   );
 };
