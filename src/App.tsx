@@ -4,6 +4,7 @@ import Container from "@mui/material/Container";
 import Header from "./components/Header";
 import ToolBar from "./components/ToolBar";
 import EditZone from "./components/EditZone";
+import Preview from "./components/Preview";
 
 const defaultTheme = createTheme();
 
@@ -15,6 +16,7 @@ const App: FC = (): JSX.Element => {
         <main style={{ display: "flex" }}>
           <ToolBar />
           <EditZone />
+          <Preview />
         </main>
       </Container>
     </ThemeProvider>
