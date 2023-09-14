@@ -8,7 +8,7 @@ const defaultTheme = createTheme();
 const App: FC = (): JSX.Element => {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container maxWidth="lg">
+      <Container maxWidth={false}>
         <Header title={"REACT EDITOR Test"} />
         <main></main>
       </Container>
