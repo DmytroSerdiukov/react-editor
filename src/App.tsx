@@ -2,9 +2,9 @@ import React, { FC } from "react";
 import { createTheme, ThemeProvider } from "@mui/material";
 import Container from "@mui/material/Container";
 import Header from "./components/Header";
-import ToolBar from "./components/ToolBar";
 import EditZone from "./components/EditZone";
 import Preview from "./components/Preview";
+import ToolBar from "./features/ToolBar/ToolBar";
 
 const defaultTheme = createTheme();
 
