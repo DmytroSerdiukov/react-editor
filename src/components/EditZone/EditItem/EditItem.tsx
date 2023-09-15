@@ -1,7 +1,7 @@
 import React, { FC, MouseEvent, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 
-import { ICONS } from "../../ActionIcons/ActionIcons";
+import { ActionIcons } from "../../ActionIcons/ActionIcons";
 import { TextField } from "@mui/material";
 import { IItemProps } from "../types";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
@@ -61,7 +61,7 @@ const EditItem: FC<IItemProps> = ({ title = "Headline" }): JSX.Element => {
         </div>
       ) : null}
       <div className={styles.component_info_wrapper}>
-        <div className={styles.component_icon}>{ICONS[title]}</div>
+        <div className={styles.component_icon}>{ActionIcons[title]}</div>
         <div className={styles.component_title}>{title}</div>
       </div>
       {isEdited ? (
