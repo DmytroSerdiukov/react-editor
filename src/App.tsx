@@ -3,7 +3,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import Container from "@mui/material/Container";
 import Header from "./components/Header/Header";
 import EditZone from "./features/EditZone/EditZone";
-import Preview from "./components/Preview";
+import Preview from "./features/Preview";
 import ToolBar from "./features/ToolBar/ToolBar";
 
 const defaultTheme = createTheme();
