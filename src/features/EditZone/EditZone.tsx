@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Box from "@mui/material/Box";
-import EditItem from "../../components/EditZone/EditItem";
+import EditItem from "../../components/EditZone/EditItem/EditItem";
 
 const EditZone: FC = (): JSX.Element => {
   return (

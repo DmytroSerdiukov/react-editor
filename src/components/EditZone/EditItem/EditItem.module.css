@@ -1,0 +1,51 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  margin-top: 3px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.actions_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: absolute;
+  right: 10px;
+  top: -27px;
+  gap: 5;
+}
+
+.component_info_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.component_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5px;
+}
+
+.component_title {
+  color: #252a32;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.textfield_wrapper {
+  width: 95%;
+  height: 40px;
+  padding: 5px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+}

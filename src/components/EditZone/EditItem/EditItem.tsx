@@ -1,14 +1,16 @@
 import React, { FC, MouseEvent, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 
-import { ICONS } from "../ActionIcons/ActionIcons";
+import { ICONS } from "../../ActionIcons/ActionIcons";
 import { TextField } from "@mui/material";
-import { IItemProps } from "./types";
+import { IItemProps } from "../types";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import ActionsContainer from "../ActionsContainer/ActionsContainer";
+import ActionsContainer from "../../ActionsContainer/ActionsContainer";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+
+import styles from "./EditItem.module.css";
 
 const EditItem: FC<IItemProps> = ({ title = "Headline" }): JSX.Element => {
   const [isEdited, setEdited] = useState(false);
@@ -21,29 +23,13 @@ const EditItem: FC<IItemProps> = ({ title = "Headline" }): JSX.Element => {
   return (
     <div
       onClick={onClickHandler}
+      className={styles.wrapper}
       style={{
-        position: "relative",
-        width: "100%",
-        marginTop: 3,
         backgroundColor: isEdited ? "#D9E7FF" : "#fff",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        borderRadius: 8,
       }}
     >
       {isEdited ? (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            position: "absolute",
-            right: 15,
-            top: -27,
-            gap: 5,
-          }}
-        >
+        <div className={styles.actions_wrapper}>
           <ActionsContainer background="#449CF4">
             <IconButton
               size="small"
@@ -74,47 +60,20 @@ const EditItem: FC<IItemProps> = ({ title = "Headline" }): JSX.Element => {
           </ActionsContainer>
         </div>
       ) : null}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: 10,
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          {ICONS[title]}
-        </div>
-        <div style={{ color: "#252A32", fontSize: "12px", lineHeight: "18px" }}>
-          {title}
-        </div>
+      <div className={styles.component_info_wrapper}>
+        <div className={styles.component_icon}>{ICONS[title]}</div>
+        <div className={styles.component_title}>{title}</div>
       </div>
       {isEdited ? (
-        <div
-          style={{
-            width: "95%",
-            height: 40,
-            padding: 5,
-            marginBottom: 20,
-            borderRadius: 3,
-            backgroundColor: "#fff",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
+        <div className={styles.textfield_wrapper}>
           <TextField
             onClick={(e: MouseEvent<HTMLElement>) => {
               e.stopPropagation();
             }}
             sx={{ width: "100%" }}
-            InputProps={{ style: { height: 30, fontSize: 11 } }}
+            InputProps={{
+              style: { height: 30, fontSize: 11 },
+            }}
           />
         </div>
       ) : null}
