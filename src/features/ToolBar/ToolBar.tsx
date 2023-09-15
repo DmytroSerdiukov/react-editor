@@ -1,12 +1,11 @@
 import React, { FC } from "react";
 import { listItems } from "../../components/ToolBar/listItems";
+import styles from "./ToolBar.module.css";
 
 const ToolBar: FC = (): JSX.Element => {
   return (
-    <div style={{ padding: 30, width: 270 }}>
-      <div style={{ gap: 10, display: "flex", flexWrap: "wrap" }}>
-        {listItems}
-      </div>
+    <div className={styles.toolbar_wrapper}>
+      <div className={styles.wrapper}>{listItems}</div>
     </div>
   );
 };
