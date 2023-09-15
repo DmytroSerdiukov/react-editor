@@ -4,19 +4,11 @@ import { listItems } from "./listItems";
 
 const ToolBar: FC = (): JSX.Element => {
   return (
-    <List
-      component="nav"
-      sx={{
-        paddingLeft: 1,
-        paddingRight: 1,
-        marginTop: 3,
-        width: 270,
-        display: "flex",
-        flexWrap: "wrap",
-      }}
-    >
-      {listItems}
-    </List>
+    <div style={{ padding: 30, width: 270 }}>
+      <div style={{ gap: 10, display: "flex", flexWrap: "wrap" }}>
+        {listItems}
+      </div>
+    </div>
   );
 };
 
