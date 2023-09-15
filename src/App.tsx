@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { createTheme, ThemeProvider } from "@mui/material";
 import Container from "@mui/material/Container";
-import Header from "./components/Header";
-import EditZone from "./components/EditZone";
+import Header from "./components/Header/Header";
+import EditZone from "./features/EditZone/EditZone";
 import Preview from "./components/Preview";
 import ToolBar from "./features/ToolBar/ToolBar";
 
