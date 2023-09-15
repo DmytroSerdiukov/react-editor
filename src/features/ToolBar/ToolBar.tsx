@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import List from "@mui/material/List";
 import { listItems } from "../../components/ToolBar/listItems";
 
 const ToolBar: FC = (): JSX.Element => {
