@@ -1,18 +1,8 @@
 import Box from "@mui/material/Box";
+import { styles } from "./styles";
 
 const Preview = () => {
-  return (
-    <Box
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-        width: "50%",
-      }}
-    >
-      dsds
-    </Box>
-  );
+  return <Box style={styles.wrapper}>dsds</Box>;
 };
 
 export default Preview;
