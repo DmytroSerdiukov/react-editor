@@ -1,10 +1,10 @@
-import Item from "./Item";
+import ToolBarItem from "./Item/ToolBarItem";
 
 export const listItems = (
   <>
-    <Item title="Headline" />
-    <Item title="Paragraph" />
-    <Item title="Button" />
-    <Item title="Image" />
+    <ToolBarItem title="Headline" />
+    <ToolBarItem title="Paragraph" />
+    <ToolBarItem title="Button" />
+    <ToolBarItem title="Image" />
   </>
 );
