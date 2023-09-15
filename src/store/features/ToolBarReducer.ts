@@ -6,7 +6,12 @@ export interface ToolBarState {
 }
 
 const initialState: ToolBarState = {
-  items: [],
+  items: [
+    { id: 1, title: "Headline", value: "" },
+    { id: 2, title: "Paragraph", value: "" },
+    { id: 4, title: "Image", value: "" },
+    { id: 3, title: "Button", value: "" },
+  ],
 };
 
 export const ToolBarReducer = createSlice({
