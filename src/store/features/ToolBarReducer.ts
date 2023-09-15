@@ -5,12 +5,19 @@ export interface ToolBarState {
   items: any;
 }
 
+enum ItemType {
+  Headline,
+  Paragraph,
+  Image,
+  Button,
+}
+
 const initialState: ToolBarState = {
   items: [
-    { id: 1, title: "Headline", value: "" },
-    { id: 2, title: "Paragraph", value: "" },
-    { id: 4, title: "Image", value: "" },
-    { id: 3, title: "Button", value: "" },
+    { id: 1, title: "Headline", type: ItemType.Headline, value: "" },
+    { id: 2, title: "Paragraph", type: ItemType.Paragraph, value: "" },
+    { id: 3, title: "Image", type: ItemType.Image, value: "" },
+    { id: 4, title: "Button", type: ItemType.Button, value: "" },
   ],
 };
 

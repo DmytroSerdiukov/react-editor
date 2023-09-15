@@ -6,11 +6,10 @@ import EditItemContainer from "../../components/EditZone/EditItem/EditItemContai
 
 const EditZone: FC = (): JSX.Element => {
   const items = useAppSelector((state) => state.editzone.items);
-  console.log(items);
   return (
     <Box sx={styles.wrapper}>
-      {items.map((el: any, i: number) => (
-        <EditItemContainer key={`${el}${i}`} {...el} />
+      {items.map((el: any) => (
+        <EditItemContainer key={el.id} {...el} />
       ))}
     </Box>
   );

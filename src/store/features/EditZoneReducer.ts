@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { randomUUID } from "crypto";
+import { randomId } from "../../utils/randomId";
 
 interface Item {
   id: number;
@@ -19,18 +21,26 @@ export const EditZoneReducer = createSlice({
   initialState,
   reducers: {
     createNewItem: (state, action) => {
-      state.items.push({
-        id: state.items.length,
-        title: action.payload,
+      const { title, type } = action.payload;
+      const newItem = {
+        id: randomId(),
+        title: title,
+        type: type,
         value: "",
-      });
+      };
+      state.items = [...state.items, newItem];
     },
     cloneItem: (state, action) => {
-      state.items.push({ ...action.payload, id: state.items.length });
+      state.items = [...state.items, { ...action.payload, id: randomId() }];
     },
     changeItemValue: (state, action) => {
       const { id, value } = action.payload;
-      state.items[id].value = value;
+      state.items = state.items.map((el: any) => {
+        if (el.id === id) {
+          return { ...el, value };
+        }
+        return el;
+      });
     },
 
     deleteEditItem: (state, action) => {

@@ -8,18 +8,13 @@ const ToolBar: FC = (): JSX.Element => {
   const items = useAppSelector((state) => state.toolbar.items);
   const dispatch = useAppDispatch();
   const addEditItem = (item: any) => {
-    console.log(item);
     dispatch(createNewItem(item));
   };
   return (
     <div className={styles.toolbar_wrapper}>
       <div className={styles.wrapper}>
         {items.map((el: any, i: number) => (
-          <ToolBarItem
-            key={`${el}${i}`}
-            title={el.title}
-            addEditItem={addEditItem}
-          />
+          <ToolBarItem key={`${el}${i}`} {...el} addEditItem={addEditItem} />
         ))}
       </div>
     </div>
