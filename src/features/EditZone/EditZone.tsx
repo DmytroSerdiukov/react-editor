@@ -1,17 +1,11 @@
 import React, { FC } from "react";
 import Box from "@mui/material/Box";
 import EditItem from "../../components/EditZone/EditItem/EditItem";
+import { styles } from "./styles";
 
 const EditZone: FC = (): JSX.Element => {
   return (
-    <Box
-      sx={{
-        backgroundColor: "#F6F9FE",
-        height: "100%",
-        width: "30%",
-        padding: "25px 30px",
-      }}
-    >
+    <Box sx={styles.wrapper}>
       <EditItem title="Headline" />
     </Box>
   );
