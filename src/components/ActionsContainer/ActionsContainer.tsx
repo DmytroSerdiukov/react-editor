@@ -1,3 +1,5 @@
+import ActionsContainerStyles from "./ActionsContainer.module.css";
+
 interface Props {
   children: JSX.Element[];
   background: string;
@@ -6,14 +8,9 @@ interface Props {
 const ActionsContainer = ({ background, children }: Props) => {
   return (
     <div
+      className={ActionsContainerStyles.wrapper}
       style={{
-        padding: 3,
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
         backgroundColor: background,
-        color: "#fff",
-        borderRadius: "3px 3px 0px 0px",
       }}
     >
       {children.map((el) => el)}

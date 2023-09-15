@@ -6,7 +6,7 @@ import { TextField } from "@mui/material";
 import { IItemProps } from "./types";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import ActionsContainer from "./ActionsContainer";
+import ActionsContainer from "../ActionsContainer/ActionsContainer";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
