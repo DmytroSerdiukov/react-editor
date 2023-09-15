@@ -2,7 +2,7 @@ export const styles = {
   wrapper: {
     display: "flex",
     flexDirection: "column",
-    backgroundColor: "red",
+    alignItems: "center",
     height: "100%",
     width: "50%",
   },
