@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent, useState } from "react";
+import React, { FC, MouseEvent, useState, useRef } from "react";
 import IconButton from "@mui/material/IconButton";
 
 import { ActionIcons } from "../../ActionIcons/ActionIcons";
@@ -12,8 +12,35 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 import styles from "./EditItem.module.css";
 
-const EditItem: FC<IItemProps> = ({ title = "Headline" }): JSX.Element => {
+const EditItem: FC<IItemProps> = ({
+  id,
+  title,
+  value,
+  changeItemVal,
+  deleteItem,
+  cloneItem,
+}): JSX.Element => {
   const [isEdited, setEdited] = useState(false);
+  const textfield = useRef<any>("");
+
+  const editItemValue = (e: any) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const value = textfield.current.value;
+    const data = { id, value };
+    changeItemVal(data);
+  };
+
+  const deleteEditItem = (e: MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    deleteItem(id);
+  };
+
+  const cloneEditItem = (e: MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    const data = { id, title, value };
+    cloneItem(data);
+  };
 
   const onClickHandler = (e: any) => {
     e.stopPropagation();
@@ -45,16 +72,10 @@ const EditItem: FC<IItemProps> = ({ title = "Headline" }): JSX.Element => {
             </IconButton>
           </ActionsContainer>
           <ActionsContainer background="#68C2E9">
-            <IconButton
-              size="small"
-              onClick={(e: MouseEvent<HTMLElement>) => e.stopPropagation()}
-            >
+            <IconButton size="small" onClick={cloneEditItem}>
               <ContentCopyIcon sx={{ fontSize: 12, color: "#fff" }} />
             </IconButton>
-            <IconButton
-              size="small"
-              onClick={(e: MouseEvent<HTMLElement>) => e.stopPropagation()}
-            >
+            <IconButton size="small" onClick={deleteEditItem}>
               <DeleteOutlineIcon sx={{ fontSize: 12, color: "#fff" }} />
             </IconButton>
           </ActionsContainer>
@@ -70,7 +91,10 @@ const EditItem: FC<IItemProps> = ({ title = "Headline" }): JSX.Element => {
             onClick={(e: MouseEvent<HTMLElement>) => {
               e.stopPropagation();
             }}
+            defaultValue={value}
             sx={{ width: "100%" }}
+            onChange={editItemValue}
+            inputRef={textfield}
             InputProps={{
               style: { height: 30, fontSize: 11 },
             }}
