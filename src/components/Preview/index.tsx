@@ -1,15 +1,17 @@
-import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 
 const Preview = () => {
   return (
-    <Container
+    <Box
       style={{
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        background: "red",
+        width: "50%",
       }}
-    ></Container>
+    >
+      dsds
+    </Box>
   );
 };
 
