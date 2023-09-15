@@ -1,11 +1,27 @@
 import React, { FC } from "react";
-import { listItems } from "../../components/ToolBar/listItems";
 import styles from "./ToolBar.module.css";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import ToolBarItem from "../../components/ToolBar/Item/ToolBarItem";
+import { createNewItem } from "../../store/features/EditZoneReducer";
 
 const ToolBar: FC = (): JSX.Element => {
+  const items = useAppSelector((state) => state.toolbar.items);
+  const dispatch = useAppDispatch();
+  const addEditItem = (item: any) => {
+    console.log(item);
+    dispatch(createNewItem(item));
+  };
   return (
     <div className={styles.toolbar_wrapper}>
-      <div className={styles.wrapper}>{listItems}</div>
+      <div className={styles.wrapper}>
+        {items.map((el: any, i: number) => (
+          <ToolBarItem
+            key={`${el}${i}`}
+            title={el.title}
+            addEditItem={addEditItem}
+          />
+        ))}
+      </div>
     </div>
   );
 };
