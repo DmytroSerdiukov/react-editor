@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent, useState, useRef } from "react";
+import React, { FC, MouseEvent, useState, useEffect, useRef } from "react";
 import IconButton from "@mui/material/IconButton";
 
 import { ActionIcons } from "../../ActionIcons/ActionIcons";
@@ -24,23 +24,23 @@ const EditItem: FC<IItemProps> = ({
 }): JSX.Element => {
   const [isEdited, setEdited] = useState(false);
   const textfield = useRef<any>("");
-  const VisuallyHiddenInput = styled("input")({
-    clip: "rect(0 0 0 0)",
-    clipPath: "inset(50%)",
-    height: 1,
-    overflow: "hidden",
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    whiteSpace: "nowrap",
-    width: 1,
-  });
+
   const editItemValue = (e: any) => {
     e.stopPropagation();
     e.preventDefault();
     const value = textfield.current.value;
     const data = { id, value };
     changeItemVal(data);
+  };
+
+  const onFileLoad = (e: any) => {
+    const value = e.target.files[0].name;
+    const data = { id, value };
+    changeItemVal(data);
+  };
+
+  const onInputFileClick = (e: any) => {
+    e.stopPropagation();
   };
 
   const deleteEditItem = (e: MouseEvent<HTMLElement>) => {
@@ -101,14 +101,12 @@ const EditItem: FC<IItemProps> = ({
       {isEdited ? (
         <div className={styles.textfield_wrapper}>
           {type === 2 ? (
-            <Button
-              component="label"
-              variant="contained"
-              startIcon={<CloudUploadIcon />}
-            >
-              Upload file
-              <VisuallyHiddenInput type="file" />
-            </Button>
+            <input
+              id="fileinput"
+              type="file"
+              onClick={onInputFileClick}
+              onChange={onFileLoad}
+            />
           ) : (
             <TextField
               onClick={(e: MouseEvent<HTMLElement>) => {
