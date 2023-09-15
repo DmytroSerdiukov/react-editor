@@ -1,7 +1,7 @@
 import React, { FC, MouseEvent, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 
-import { ICONS } from "../ToolBar/Icons";
+import { ICONS } from "../ActionIcons/ActionIcons";
 import { TextField } from "@mui/material";
 import { IItemProps } from "./types";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
