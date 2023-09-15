@@ -1,19 +1,19 @@
 import React, { FC } from "react";
-import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 import EditItem from "./EditItem";
 
 const EditZone: FC = (): JSX.Element => {
   return (
-    <Container
+    <Box
       sx={{
         backgroundColor: "#F6F9FE",
-        height: 700,
-        width: 530,
-        paddingTop: 2,
+        height: "100%",
+        width: "30%",
+        padding: "25px 30px",
       }}
     >
       <EditItem title="Headline" />
-    </Container>
+    </Box>
   );
 };
 
