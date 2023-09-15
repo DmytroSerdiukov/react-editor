@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import styles from "./ToolBar.module.css";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import ToolBarItem from "../../components/ToolBar/Item/ToolBarItem";
@@ -11,11 +11,13 @@ const ToolBar: FC = (): JSX.Element => {
     dispatch(createNewItem(item));
   };
   return (
-    <div className={styles.toolbar_wrapper}>
+    <div id="toolbar" className={styles.toolbar_wrapper}>
       <div className={styles.wrapper}>
-        {items.map((el: any, i: number) => (
-          <ToolBarItem key={`${el}${i}`} {...el} addEditItem={addEditItem} />
-        ))}
+        {items.map((el: any, i: number) => {
+          return (
+            <ToolBarItem key={`${el}${i}`} {...el} addEditItem={addEditItem} />
+          );
+        })}
       </div>
     </div>
   );

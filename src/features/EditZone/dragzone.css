@@ -1,0 +1,10 @@
+.wrapper {
+  background-color: #f6f9fe;
+  height: 100%;
+  width: 30%;
+  padding: 25px 30px;
+}
+
+.dragEnter {
+  border: 3px dashed black;
+}
