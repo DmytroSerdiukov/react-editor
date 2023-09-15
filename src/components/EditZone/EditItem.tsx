@@ -1,30 +1,35 @@
-import React, { FC, useState } from "react";
-import Item from "../ToolBar/Item";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import Container from "@mui/material/Container";
+import React, { FC, MouseEvent, useState } from "react";
+import IconButton from "@mui/material/IconButton";
 
-import ListItemText from "@mui/material/ListItemText";
 import { ICONS } from "../ToolBar/Icons";
 import { TextField } from "@mui/material";
 import { IItemProps } from "./types";
-import Positions from "./Positions";
-import DeleteCopy from "./DeleteCopy";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ActionsContainer from "./ActionsContainer";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 const EditItem: FC<IItemProps> = ({ title = "Headline" }): JSX.Element => {
   const [isEdited, setEdited] = useState(false);
 
-  const onClickHandler = () => setEdited(!isEdited);
+  const onClickHandler = (e: any) => {
+    e.stopPropagation();
+    setEdited(!isEdited);
+  };
 
   return (
     <div
+      onClick={onClickHandler}
       style={{
         position: "relative",
-        width: 475,
+        width: "100%",
         marginTop: 3,
         backgroundColor: isEdited ? "#D9E7FF" : "#fff",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        borderRadius: 8,
       }}
     >
       {isEdited ? (
@@ -34,12 +39,39 @@ const EditItem: FC<IItemProps> = ({ title = "Headline" }): JSX.Element => {
             flexDirection: "row",
             justifyContent: "space-between",
             position: "absolute",
-            right: 35,
-            top: -20,
+            right: 15,
+            top: -27,
+            gap: 5,
           }}
         >
-          <Positions />
-          <DeleteCopy />
+          <ActionsContainer background="#449CF4">
+            <IconButton
+              size="small"
+              onClick={(e: MouseEvent<HTMLElement>) => e.stopPropagation()}
+            >
+              <ArrowDownwardIcon sx={{ fontSize: 12, color: "#fff" }} />
+            </IconButton>
+            <IconButton
+              size="small"
+              onClick={(e: MouseEvent<HTMLElement>) => e.stopPropagation()}
+            >
+              <ArrowUpwardIcon sx={{ fontSize: 12, color: "#fff" }} />
+            </IconButton>
+          </ActionsContainer>
+          <ActionsContainer background="#68C2E9">
+            <IconButton
+              size="small"
+              onClick={(e: MouseEvent<HTMLElement>) => e.stopPropagation()}
+            >
+              <ContentCopyIcon sx={{ fontSize: 12, color: "#fff" }} />
+            </IconButton>
+            <IconButton
+              size="small"
+              onClick={(e: MouseEvent<HTMLElement>) => e.stopPropagation()}
+            >
+              <DeleteOutlineIcon sx={{ fontSize: 12, color: "#fff" }} />
+            </IconButton>
+          </ActionsContainer>
         </div>
       ) : null}
       <div
@@ -50,29 +82,26 @@ const EditItem: FC<IItemProps> = ({ title = "Headline" }): JSX.Element => {
           alignItems: "center",
           marginTop: 10,
         }}
-        onClick={onClickHandler}
       >
-        <ListItemIcon
-          sx={{
+        <div
+          style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
           {ICONS[title]}
-        </ListItemIcon>
-        <ListItemText
-          primary={title}
-          primaryTypographyProps={{ fontSize: "12px", lineHeight: "18px" }}
-          sx={{ color: "#252A32" }}
-        />
+        </div>
+        <div style={{ color: "#252A32", fontSize: "12px", lineHeight: "18px" }}>
+          {title}
+        </div>
       </div>
       {isEdited ? (
         <div
           style={{
             width: "95%",
             height: 40,
-            paddingTop: 5,
+            padding: 5,
             marginBottom: 20,
             borderRadius: 3,
             backgroundColor: "#fff",
@@ -81,7 +110,10 @@ const EditItem: FC<IItemProps> = ({ title = "Headline" }): JSX.Element => {
           }}
         >
           <TextField
-            sx={{ width: "97%" }}
+            onClick={(e: MouseEvent<HTMLElement>) => {
+              e.stopPropagation();
+            }}
+            sx={{ width: "100%" }}
             InputProps={{ style: { height: 30, fontSize: 11 } }}
           />
         </div>
