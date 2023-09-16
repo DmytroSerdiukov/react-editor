@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { IHeaderProps } from "./types";
+import { HeaderProps } from "./types";
 
-const Header: FC<IHeaderProps> = ({ title }): JSX.Element => {
+const Header: FC<HeaderProps> = ({ title }): JSX.Element => {
   return (
     <>
       <Toolbar sx={{ borderBottom: 1, borderColor: "divider" }}>
