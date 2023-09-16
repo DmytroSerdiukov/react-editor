@@ -32,7 +32,7 @@ const EditItem: FC<EditItemProps> = ({
     changeItemVal(data);
   };
 
-  const onFileLoad = (e: any) => {
+  const onFileLoad = (e: any): void => {
     const value = e.target.files[0].name;
     const data = { id, value };
     changeItemVal(data);
@@ -63,7 +63,7 @@ const EditItem: FC<EditItemProps> = ({
     cloneItem(data);
   };
 
-  const onClickHandler = (e: any): void => {
+  const onClickHandler = (e: MouseEvent<HTMLElement>): void => {
     e.stopPropagation();
     setEdited(!isEdited);
   };

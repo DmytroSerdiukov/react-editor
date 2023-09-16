@@ -9,3 +9,12 @@ export interface EditItemProps {
   moveItemPositionUp: (id: any) => {};
   moveItemPositionDown: (id: any) => {};
 }
+
+export interface EditItemData {
+  id: string;
+  title: string;
+  type: number;
+  value: string;
+}
+
+export type EditItemInfo = Omit<EditItemData, "title" | "type">;

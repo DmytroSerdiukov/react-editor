@@ -54,14 +54,9 @@ export const EditZoneReducer = createSlice({
       state.items.map((el: any, i: number) => {
         if (el.id === action.payload) {
           if (i === 0) return;
-          console.log("CURRENT", current(state.items));
-
-          const curr = el;
-          const currIndex = i;
           const previous = state.items[i - 1];
           state.items[i - 1] = el;
           state.items[i] = previous;
-          console.log("CURRENT", current(state.items));
         }
       });
     },

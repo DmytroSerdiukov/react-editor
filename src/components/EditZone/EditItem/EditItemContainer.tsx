@@ -10,28 +10,30 @@ import {
 } from "../../../store/features/EditZoneReducer";
 
 import EditItem from "./EditItem";
+import { EditItemData, EditItemInfo } from "../types";
 
 const EditItemContainer: FC = (props: any): JSX.Element => {
   const dispatch = useAppDispatch();
 
-  const changeItemVal = (data: any): void => {
+  const changeItemVal = (data: EditItemInfo): void => {
+    console.log(data);
     dispatch(changeItemValue(data));
   };
 
-  const cloneEditItem = (data: any): void => {
+  const cloneEditItem = (data: EditItemData): void => {
     dispatch(cloneItem(data));
   };
 
-  const deleteItem = (id: any): void => {
+  const deleteItem = (id: string): void => {
     dispatch(deleteEditItem(id));
   };
 
-  const moveItemPositionUp = (id: any): void => {
+  const moveItemPositionUp = (id: string): void => {
     console.log(id);
     dispatch(moveItemUp(id));
   };
 
-  const moveItemPositionDown = (id: any): void => {
+  const moveItemPositionDown = (id: string): void => {
     dispatch(moveItemDown(id));
   };
 
