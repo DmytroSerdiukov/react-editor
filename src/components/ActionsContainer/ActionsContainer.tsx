@@ -1,11 +1,11 @@
+import React, { FC } from "react";
 import ActionsContainerStyles from "./ActionsContainer.module.css";
+import { ActionsContainerProps } from "./types";
 
-interface Props {
-  children: JSX.Element[];
-  background: string;
-}
-
-const ActionsContainer = ({ background, children }: Props) => {
+const ActionsContainer: FC<ActionsContainerProps> = ({
+  background,
+  children,
+}): JSX.Element => {
   return (
     <div
       className={ActionsContainerStyles.wrapper}
@@ -13,7 +13,7 @@ const ActionsContainer = ({ background, children }: Props) => {
         backgroundColor: background,
       }}
     >
-      {children.map((el) => el)}
+      {children.map((el: any) => el)}
     </div>
   );
 };
