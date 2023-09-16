@@ -4,3 +4,8 @@ export type IItemProps = {
   id: number;
   addEditItem: (item: any) => void;
 };
+
+export interface NewItemData {
+  title: string;
+  type: number;
+}
