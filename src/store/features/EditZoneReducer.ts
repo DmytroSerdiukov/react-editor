@@ -1,29 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { randomUUID } from "crypto";
 import { randomId } from "../../utils/randomId";
-import { current } from "immer";
+import { Item, ItemValues } from "../types";
 
-interface Item {
-  id: number;
-  title: string;
-  value: string;
-}
 export interface EditZoneState {
-  items: any;
+  items: Item[] | any;
 }
 
 const initialState: EditZoneState = {
   items: [],
 };
 
+interface ItemData {
+  title: string;
+  type: number;
+}
+
 export const EditZoneReducer = createSlice({
   name: "toolbar",
   initialState,
   reducers: {
-    createNewItem: (state, action) => {
+    createNewItem: (state: EditZoneState, action: PayloadAction<ItemData>) => {
       const { title, type } = action.payload;
-      const newItem = {
+      const newItem: Item = {
         id: randomId(),
         title: title,
         type: type,
@@ -31,12 +30,15 @@ export const EditZoneReducer = createSlice({
       };
       state.items = [...state.items, newItem];
     },
-    cloneItem: (state, action) => {
+    cloneItem: (state: EditZoneState, action: PayloadAction<Item>) => {
       state.items = [...state.items, { ...action.payload, id: randomId() }];
     },
-    changeItemValue: (state, action) => {
+    changeItemValue: (
+      state: EditZoneState,
+      action: PayloadAction<ItemValues>
+    ) => {
       const { id, value } = action.payload;
-      state.items = state.items.map((el: any) => {
+      state.items = state.items.map((el: Item) => {
         if (el.id === id) {
           return { ...el, value };
         }
@@ -44,14 +46,14 @@ export const EditZoneReducer = createSlice({
       });
     },
 
-    deleteEditItem: (state, action) => {
-      state.items = state.items.filter((el: any) => el.id !== action.payload);
+    deleteEditItem: (state: EditZoneState, action: PayloadAction<string>) => {
+      state.items = state.items.filter((el: Item) => el.id !== action.payload);
     },
     getItems: (state: EditZoneState) => {
       return state.items;
     },
-    moveItemUp: (state, action) => {
-      state.items.map((el: any, i: number) => {
+    moveItemUp: (state: EditZoneState, action: PayloadAction<string>) => {
+      state.items.map((el: Item, i: number) => {
         if (el.id === action.payload) {
           if (i === 0) return;
           const previous = state.items[i - 1];
@@ -60,9 +62,9 @@ export const EditZoneReducer = createSlice({
         }
       });
     },
-    moveItemDown: (state, action) => {
+    moveItemDown: (state: EditZoneState, action: PayloadAction<string>) => {
       const index = state.items.map((el: any) => el.id).indexOf(action.payload);
-      state.items.map((el: any, i: number) => {
+      state.items.map((el: Item, i: number) => {
         if (i === index) {
           if (i === state.items.length - 1) return;
           const curr = state.items[index];

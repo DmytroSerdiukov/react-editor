@@ -8,3 +8,7 @@
 .dragEnter {
   border: 3px dashed black;
 }
+.msg {
+  display: flex;
+  justify-content: center;
+}

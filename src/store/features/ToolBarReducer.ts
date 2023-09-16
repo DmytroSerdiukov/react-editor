@@ -1,15 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { Item, ItemType } from "../types";
 
 export interface ToolBarState {
-  items: any;
-}
-
-enum ItemType {
-  Headline,
-  Paragraph,
-  Image,
-  Button,
+  items: Array<Item> | any;
 }
 
 const initialState: ToolBarState = {
@@ -25,9 +19,7 @@ export const ToolBarReducer = createSlice({
   name: "toolbar",
   initialState,
   reducers: {
-    getItems: (state: ToolBarState) => {
-      return state.items;
-    },
+    getItems: (state: ToolBarState) => state.items,
   },
 });
 

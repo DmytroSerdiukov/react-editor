@@ -1,16 +1,13 @@
 import React, { FC, useEffect } from "react";
-import Box from "@mui/material/Box";
-import { styles } from "./styles";
+import { Item } from "../../store/types";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { createNewItem } from "../../store/features/EditZoneReducer";
 import EditItemContainer from "../../components/EditZone/EditItem/EditItemContainer";
 import "./dragzone.css";
-import { createNewItem } from "../../store/features/EditZoneReducer";
 
 const EditZone: FC = (): JSX.Element => {
   const items = useAppSelector((state) => state.editzone.items);
   const dispatch = useAppDispatch();
-  const dragSrc = this;
-  console.log("ITEMS", items);
   function handleDragEnter() {
     const dragzone: any = document.getElementById("dragzone");
     dragzone.classList.add("dragEnter");
@@ -50,9 +47,11 @@ const EditZone: FC = (): JSX.Element => {
 
   return (
     <div id="dragzone" className={"wrapper"}>
-      {items.map((el: any) => (
-        <EditItemContainer key={el.id} {...el} />
-      ))}
+      {items.length > 0 ? (
+        items.map((el: Item) => <EditItemContainer key={el.id} {...el} />)
+      ) : (
+        <div className={"msg"}>You don't create any element yet</div>
+      )}
     </div>
   );
 };
