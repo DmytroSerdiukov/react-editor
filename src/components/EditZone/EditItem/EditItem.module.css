@@ -9,6 +9,10 @@
   border-radius: 8px;
 }
 
+.dragEnter {
+  border: 3px dashed black;
+}
+
 .actions_wrapper {
   display: flex;
   flex-direction: row;

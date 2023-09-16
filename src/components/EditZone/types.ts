@@ -6,4 +6,6 @@ export type IItemProps = {
   changeItemVal: (data: any) => {};
   deleteItem: (id: any) => {};
   cloneItem: (data: any) => {};
+  moveItemPositionUp: (id: any) => {};
+  moveItemPositionDown: (id: any) => {};
 };

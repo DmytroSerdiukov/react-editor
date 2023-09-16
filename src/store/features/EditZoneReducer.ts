@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { randomUUID } from "crypto";
 import { randomId } from "../../utils/randomId";
+import { current } from "immer";
 
 interface Item {
   id: number;
@@ -49,6 +50,32 @@ export const EditZoneReducer = createSlice({
     getItems: (state: EditZoneState) => {
       return state.items;
     },
+    moveItemUp: (state, action) => {
+      state.items.map((el: any, i: number) => {
+        if (el.id === action.payload) {
+          if (i === 0) return;
+          console.log("CURRENT", current(state.items));
+
+          const curr = el;
+          const currIndex = i;
+          const previous = state.items[i - 1];
+          state.items[i - 1] = el;
+          state.items[i] = previous;
+          console.log("CURRENT", current(state.items));
+        }
+      });
+    },
+    moveItemDown: (state, action) => {
+      const index = state.items.map((el: any) => el.id).indexOf(action.payload);
+      state.items.map((el: any, i: number) => {
+        if (i === index) {
+          if (i === state.items.length - 1) return;
+          const curr = state.items[index];
+          state.items[index] = state.items[index + 1];
+          state.items[index + 1] = curr;
+        }
+      });
+    },
   },
 });
 
@@ -58,6 +85,8 @@ export const {
   changeItemValue,
   deleteEditItem,
   cloneItem,
+  moveItemUp,
+  moveItemDown,
 } = EditZoneReducer.actions;
 
 export default EditZoneReducer.reducer;

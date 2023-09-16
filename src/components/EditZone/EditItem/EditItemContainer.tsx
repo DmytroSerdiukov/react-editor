@@ -5,6 +5,8 @@ import {
   changeItemValue,
   cloneItem,
   deleteEditItem,
+  moveItemDown,
+  moveItemUp,
 } from "../../../store/features/EditZoneReducer";
 
 import EditItem from "./EditItem";
@@ -24,12 +26,23 @@ const EditItemContainer: FC = (props: any) => {
     dispatch(deleteEditItem(id));
   };
 
+  const moveItemPositionUp = (id: any) => {
+    console.log(id);
+    dispatch(moveItemUp(id));
+  };
+
+  const moveItemPositionDown = (id: any) => {
+    dispatch(moveItemDown(id));
+  };
+
   return (
     <EditItem
       {...props}
       deleteItem={deleteItem}
       changeItemVal={changeItemVal}
       cloneItem={cloneEditItem}
+      moveItemPositionUp={moveItemPositionUp}
+      moveItemPositionDown={moveItemPositionDown}
     />
   );
 };

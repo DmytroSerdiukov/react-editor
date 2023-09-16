@@ -9,11 +9,12 @@ import { createNewItem } from "../../store/features/EditZoneReducer";
 const EditZone: FC = (): JSX.Element => {
   const items = useAppSelector((state) => state.editzone.items);
   const dispatch = useAppDispatch();
-
-  const handleDragEnter = () => {
+  const dragSrc = this;
+  console.log("ITEMS", items);
+  function handleDragEnter() {
     const dragzone: any = document.getElementById("dragzone");
     dragzone.classList.add("dragEnter");
-  };
+  }
 
   const handleDragLeave = () => {
     const dragzone: any = document.getElementById("dragzone");
@@ -26,7 +27,9 @@ const EditZone: FC = (): JSX.Element => {
   };
 
   const handleDrop = (e: any) => {
+    console.log(e.target.value);
     const dragzone: any = document.getElementById("dragzone");
+
     const ToolType = e.dataTransfer.getData("text/plain");
     const item = ToolType.split(",");
     const newItem = { title: item[0], type: parseInt(item[1]) };

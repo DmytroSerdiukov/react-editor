@@ -21,6 +21,8 @@ const EditItem: FC<IItemProps> = ({
   changeItemVal,
   deleteItem,
   cloneItem,
+  moveItemPositionUp,
+  moveItemPositionDown,
 }): JSX.Element => {
   const [isEdited, setEdited] = useState(false);
   const textfield = useRef<any>("");
@@ -49,6 +51,16 @@ const EditItem: FC<IItemProps> = ({
     deleteItem(id);
   };
 
+  const onDragEnter = () => {
+    const item = document.getElementById(`${id}`);
+    item?.classList.add("dragEnter");
+  };
+
+  const onDragLeave = () => {
+    const item = document.getElementById(`${id}`);
+    item?.classList.remove("dragEnter");
+  };
+
   const cloneEditItem = (e: MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     const data = { id, title, type, value };
@@ -60,10 +72,24 @@ const EditItem: FC<IItemProps> = ({
     setEdited(!isEdited);
   };
 
+  const changeItemPositionUp = (e: MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    moveItemPositionUp(id);
+  };
+
+  const changeItemPositionDown = (e: MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    moveItemPositionDown(id);
+  };
+
   return (
     <div
       onClick={onClickHandler}
       className={styles.wrapper}
+      onDragEnter={onDragEnter}
+      onDragLeave={onDragLeave}
+      draggable={true}
+      id={`${id}`}
       style={{
         backgroundColor: isEdited ? "#D9E7FF" : "#fff",
       }}
@@ -71,16 +97,10 @@ const EditItem: FC<IItemProps> = ({
       {isEdited ? (
         <div className={styles.actions_wrapper}>
           <ActionsContainer background="#449CF4">
-            <IconButton
-              size="small"
-              onClick={(e: MouseEvent<HTMLElement>) => e.stopPropagation()}
-            >
+            <IconButton size="small" onClick={changeItemPositionDown}>
               <ArrowDownwardIcon sx={{ fontSize: 12, color: "#fff" }} />
             </IconButton>
-            <IconButton
-              size="small"
-              onClick={(e: MouseEvent<HTMLElement>) => e.stopPropagation()}
-            >
+            <IconButton size="small" onClick={changeItemPositionUp}>
               <ArrowUpwardIcon sx={{ fontSize: 12, color: "#fff" }} />
             </IconButton>
           </ActionsContainer>
