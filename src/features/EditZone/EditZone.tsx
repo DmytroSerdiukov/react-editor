@@ -24,7 +24,6 @@ const EditZone: FC = (): JSX.Element => {
   };
 
   const handleDrop = (e: any) => {
-    console.log(e.target.value);
     const dragzone: any = document.getElementById("dragzone");
 
     const ToolType = e.dataTransfer.getData("text/plain");

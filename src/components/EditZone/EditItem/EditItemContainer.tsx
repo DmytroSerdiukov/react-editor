@@ -16,7 +16,6 @@ const EditItemContainer: FC = (props: any): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const changeItemVal = (data: EditItemInfo): void => {
-    console.log(data);
     dispatch(changeItemValue(data));
   };
 
@@ -29,7 +28,6 @@ const EditItemContainer: FC = (props: any): JSX.Element => {
   };
 
   const moveItemPositionUp = (id: string): void => {
-    console.log(id);
     dispatch(moveItemUp(id));
   };
 
