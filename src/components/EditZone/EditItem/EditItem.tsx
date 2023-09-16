@@ -1,19 +1,16 @@
-import React, { FC, MouseEvent, useState, useEffect, useRef } from "react";
+import React, { FC, MouseEvent, useState, useRef } from "react";
 import IconButton from "@mui/material/IconButton";
 
 import { ActionIcons } from "../../ActionIcons/ActionIcons";
 import { TextField } from "@mui/material";
-import { IItemProps } from "../types";
+import { EditItemProps } from "../types";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ActionsContainer from "../../ActionsContainer/ActionsContainer";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import Button from "@mui/material/Button";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import styles from "./EditItem.module.css";
-import { styled } from "@mui/material/styles";
-const EditItem: FC<IItemProps> = ({
+const EditItem: FC<EditItemProps> = ({
   id,
   title,
   value,
@@ -24,10 +21,10 @@ const EditItem: FC<IItemProps> = ({
   moveItemPositionUp,
   moveItemPositionDown,
 }): JSX.Element => {
-  const [isEdited, setEdited] = useState(false);
+  const [isEdited, setEdited] = useState<boolean>(false);
   const textfield = useRef<any>("");
 
-  const editItemValue = (e: any) => {
+  const editItemValue = (e: any): void => {
     e.stopPropagation();
     e.preventDefault();
     const value = textfield.current.value;
@@ -41,43 +38,42 @@ const EditItem: FC<IItemProps> = ({
     changeItemVal(data);
   };
 
-  const onInputFileClick = (e: any) => {
+  const onInputFileClick = (e: any): void => {
     e.stopPropagation();
   };
 
-  const deleteEditItem = (e: MouseEvent<HTMLElement>) => {
-    console.log("delete", id);
+  const deleteEditItem = (e: MouseEvent<HTMLElement>): void => {
     e.stopPropagation();
     deleteItem(id);
   };
 
-  const onDragEnter = () => {
+  const onDragEnter = (): void => {
     const item = document.getElementById(`${id}`);
     item?.classList.add("dragEnter");
   };
 
-  const onDragLeave = () => {
+  const onDragLeave = (): void => {
     const item = document.getElementById(`${id}`);
     item?.classList.remove("dragEnter");
   };
 
-  const cloneEditItem = (e: MouseEvent<HTMLElement>) => {
+  const cloneEditItem = (e: MouseEvent<HTMLElement>): void => {
     e.stopPropagation();
     const data = { id, title, type, value };
     cloneItem(data);
   };
 
-  const onClickHandler = (e: any) => {
+  const onClickHandler = (e: any): void => {
     e.stopPropagation();
     setEdited(!isEdited);
   };
 
-  const changeItemPositionUp = (e: MouseEvent<HTMLElement>) => {
+  const changeItemPositionUp = (e: MouseEvent<HTMLElement>): void => {
     e.stopPropagation();
     moveItemPositionUp(id);
   };
 
-  const changeItemPositionDown = (e: MouseEvent<HTMLElement>) => {
+  const changeItemPositionDown = (e: MouseEvent<HTMLElement>): void => {
     e.stopPropagation();
     moveItemPositionDown(id);
   };

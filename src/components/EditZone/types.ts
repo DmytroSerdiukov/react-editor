@@ -1,4 +1,4 @@
-export type IItemProps = {
+export interface EditItemProps {
   id: number;
   title: string;
   value: string;
@@ -8,4 +8,4 @@ export type IItemProps = {
   cloneItem: (data: any) => {};
   moveItemPositionUp: (id: any) => {};
   moveItemPositionDown: (id: any) => {};
-};
+}

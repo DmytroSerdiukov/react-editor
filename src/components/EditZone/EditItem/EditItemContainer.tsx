@@ -11,7 +11,7 @@ import {
 
 import EditItem from "./EditItem";
 
-const EditItemContainer: FC = (props: any) => {
+const EditItemContainer: FC = (props: any): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const changeItemVal = (data: any): void => {
@@ -26,12 +26,12 @@ const EditItemContainer: FC = (props: any) => {
     dispatch(deleteEditItem(id));
   };
 
-  const moveItemPositionUp = (id: any) => {
+  const moveItemPositionUp = (id: any): void => {
     console.log(id);
     dispatch(moveItemUp(id));
   };
 
-  const moveItemPositionDown = (id: any) => {
+  const moveItemPositionDown = (id: any): void => {
     dispatch(moveItemDown(id));
   };
 
