@@ -9,7 +9,6 @@ const useDragAndDrop = (props: any) => {
   const onDragEnter = (e: any) => {
     e.stopPropagation();
     e.preventDefault();
-    console.log("enter");
   };
 
   const onDragStart = (e: any) => {
@@ -22,18 +21,15 @@ const useDragAndDrop = (props: any) => {
   const onDragOver = (e: any) => {
     e.stopPropagation();
     e.preventDefault();
-    console.log("over");
   };
 
   const onDrop = (e: any) => {
     e.preventDefault();
     e.stopPropagation();
     if (e.target.classList[0] === "wrapper") {
-      console.log("wrapper");
       return;
     }
     const id = e.dataTransfer.getData("id");
-    console.log(id);
     if (id.includes("toolbar")) {
       return;
     }

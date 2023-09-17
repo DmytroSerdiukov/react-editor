@@ -69,10 +69,6 @@ const EditItem: FC<EditItemProps> = ({
     moveItemPositionDown(id);
   };
 
-  const handleDrop = () => {
-    const {};
-  };
-
   return (
     <div
       onClick={onClickHandler}
