@@ -10,6 +10,7 @@ import ActionsContainer from '../../ActionsContainer/ActionsContainer'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import styles from './EditItem.module.css'
+import useDisplayImage from '../../../hooks/ImageDisplay/ImageDisplay'
 
 const EditItem: FC<EditItemProps> = ({
   id,
@@ -21,6 +22,7 @@ const EditItem: FC<EditItemProps> = ({
   cloneItem,
   moveItemPositionUp,
   moveItemPositionDown,
+  handleFileLoad,
   ...props
 }): JSX.Element => {
   const [isEdited, setEdited] = useState<boolean>(false)
@@ -34,10 +36,8 @@ const EditItem: FC<EditItemProps> = ({
     changeItemVal(data)
   }
 
-  const onFileLoad = (e: any): void => {
-    const value = e.target.files[0].name
-    const data = { id, value }
-    changeItemVal(data)
+  const onFileLoadEvent = (e: any): void => {
+    handleFileLoad(e)
   }
 
   const onInputFileClick = (e: any): void => {
@@ -111,7 +111,7 @@ const EditItem: FC<EditItemProps> = ({
               id="fileinput"
               type="file"
               onClick={onInputFileClick}
-              onChange={onFileLoad}
+              onChange={onFileLoadEvent}
             />
           ) : (
             <TextField

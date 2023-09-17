@@ -8,6 +8,7 @@ export interface EditItemProps {
   cloneItem: (data: any) => {}
   moveItemPositionUp: (id: any) => {}
   moveItemPositionDown: (id: any) => {}
+  handleFileLoad: (e: any) => {}
 }
 
 export interface EditItemData {

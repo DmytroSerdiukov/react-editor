@@ -20,6 +20,17 @@ const EditItemContainer: FC = (props: any): JSX.Element => {
     dispatch(changeItemValue(data))
   }
 
+  const handleFileLoad = (e: any) => {
+    const acceptedFile = e.target.files[0]
+    let reader = new FileReader()
+    reader.addEventListener('load', (e: any) => {
+      const value = e.target.result
+      const data = { id: props.id, value }
+      changeItemVal(data)
+    })
+    reader.readAsDataURL(acceptedFile)
+  }
+
   const cloneEditItem = (data: EditItemData): void => {
     dispatch(cloneItem(data))
   }
@@ -40,6 +51,7 @@ const EditItemContainer: FC = (props: any): JSX.Element => {
     <EditItem
       {...props}
       {...dnd}
+      handleFileLoad={handleFileLoad}
       deleteItem={deleteItem}
       changeItemVal={changeItemVal}
       cloneItem={cloneEditItem}
