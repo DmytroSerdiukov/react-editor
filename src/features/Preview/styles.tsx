@@ -5,5 +5,6 @@ export const styles = {
     alignItems: "center",
     height: "100%",
     width: "50%",
+    overflowY: "scroll",
   },
 };

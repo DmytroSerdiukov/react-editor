@@ -20,6 +20,7 @@ const EditItem: FC<EditItemProps> = ({
   cloneItem,
   moveItemPositionUp,
   moveItemPositionDown,
+  ...props
 }): JSX.Element => {
   const [isEdited, setEdited] = useState<boolean>(false);
   const textfield = useRef<any>("");
@@ -47,16 +48,6 @@ const EditItem: FC<EditItemProps> = ({
     deleteItem(id);
   };
 
-  const onDragEnter = (): void => {
-    const item = document.getElementById(`${id}`);
-    item?.classList.add("dragEnter");
-  };
-
-  const onDragLeave = (): void => {
-    const item = document.getElementById(`${id}`);
-    item?.classList.remove("dragEnter");
-  };
-
   const cloneEditItem = (e: MouseEvent<HTMLElement>): void => {
     e.stopPropagation();
     const data = { id, title, type, value };
@@ -82,9 +73,7 @@ const EditItem: FC<EditItemProps> = ({
     <div
       onClick={onClickHandler}
       className={styles.wrapper}
-      onDragEnter={onDragEnter}
-      onDragLeave={onDragLeave}
-      draggable={true}
+      {...props}
       id={`${id}`}
       style={{
         backgroundColor: isEdited ? "#D9E7FF" : "#fff",

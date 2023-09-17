@@ -73,6 +73,16 @@ export const EditZoneReducer = createSlice({
         }
       });
     },
+    moveEditItems: (state: any, action: any) => {
+      const { id, targetId } = action.payload;
+      const idIndex = state.items.findIndex((el: any) => el.id === id);
+      const targetIdIndex = state.items.findIndex(
+        (el: any) => el.id === targetId
+      );
+      var element = state.items[idIndex];
+      state.items.splice(idIndex, 1);
+      state.items.splice(targetIdIndex, 0, element);
+    },
   },
 });
 
@@ -84,6 +94,7 @@ export const {
   cloneItem,
   moveItemUp,
   moveItemDown,
+  moveEditItems,
 } = EditZoneReducer.actions;
 
 export default EditZoneReducer.reducer;
