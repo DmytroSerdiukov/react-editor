@@ -1,4 +1,4 @@
 export interface ActionsContainerProps {
-  children: any;
-  background: string;
+  children: any
+  background: string
 }

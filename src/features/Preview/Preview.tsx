@@ -1,17 +1,17 @@
-import Box from "@mui/material/Box";
-import { styles } from "./styles";
-import { useAppSelector } from "../../store/hooks";
-import { Button, Typography } from "@mui/material";
+import Box from '@mui/material/Box'
+import { styles } from './styles'
+import { useAppSelector } from '../../store/hooks'
+import { Button, Typography } from '@mui/material'
 
 const Preview = () => {
-  const items = useAppSelector((state) => state.editzone.items);
+  const items = useAppSelector((state) => state.editzone.items)
   return (
     <Box sx={styles.wrapper}>
       {items.map((el: any) => {
         if (el.type === 0)
-          return <Typography key={el.id}>{el.value}</Typography>;
+          return <Typography key={el.id}>{el.value}</Typography>
         if (el.type === 1)
-          return <Typography key={el.id}>{el.value}</Typography>;
+          return <Typography key={el.id}>{el.value}</Typography>
         if (el.type === 2)
           return (
             <img
@@ -21,7 +21,7 @@ const Preview = () => {
               src={el.value}
               alt={el.value}
             />
-          );
+          )
         if (el.type === 3)
           return (
             <Button
@@ -30,12 +30,12 @@ const Preview = () => {
               variant="contained"
               key={el.id}
             >
-              {el.value ? el.value : "Button text"}
+              {el.value ? el.value : 'Button text'}
             </Button>
-          );
+          )
       })}
     </Box>
-  );
-};
+  )
+}
 
-export default Preview;
+export default Preview

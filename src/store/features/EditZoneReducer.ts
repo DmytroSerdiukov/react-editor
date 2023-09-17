@@ -1,90 +1,90 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
-import { randomId } from "../../utils/randomId";
-import { Item, ItemValues } from "../types";
+import { createSlice } from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
+import { randomId } from '../../utils/randomId'
+import { Item, ItemValues } from '../types'
 
 export interface EditZoneState {
-  items: Item[] | any;
+  items: Item[] | any
 }
 
 const initialState: EditZoneState = {
   items: [],
-};
+}
 
 interface ItemData {
-  title: string;
-  type: number;
+  title: string
+  type: number
 }
 
 export const EditZoneReducer = createSlice({
-  name: "toolbar",
+  name: 'toolbar',
   initialState,
   reducers: {
     createNewItem: (state: EditZoneState, action: PayloadAction<ItemData>) => {
-      const { title, type } = action.payload;
+      const { title, type } = action.payload
       const newItem: Item = {
         id: randomId(),
         title: title,
         type: type,
-        value: "",
-      };
-      state.items = [...state.items, newItem];
+        value: '',
+      }
+      state.items = [...state.items, newItem]
     },
     cloneItem: (state: EditZoneState, action: PayloadAction<Item>) => {
-      state.items = [...state.items, { ...action.payload, id: randomId() }];
+      state.items = [...state.items, { ...action.payload, id: randomId() }]
     },
     changeItemValue: (
       state: EditZoneState,
       action: PayloadAction<ItemValues>
     ) => {
-      const { id, value } = action.payload;
+      const { id, value } = action.payload
       state.items = state.items.map((el: Item) => {
         if (el.id === id) {
-          return { ...el, value };
+          return { ...el, value }
         }
-        return el;
-      });
+        return el
+      })
     },
 
     deleteEditItem: (state: EditZoneState, action: PayloadAction<string>) => {
-      state.items = state.items.filter((el: Item) => el.id !== action.payload);
+      state.items = state.items.filter((el: Item) => el.id !== action.payload)
     },
     getItems: (state: EditZoneState) => {
-      return state.items;
+      return state.items
     },
     moveItemUp: (state: EditZoneState, action: PayloadAction<string>) => {
       state.items.map((el: Item, i: number) => {
         if (el.id === action.payload) {
-          if (i === 0) return;
-          const previous = state.items[i - 1];
-          state.items[i - 1] = el;
-          state.items[i] = previous;
+          if (i === 0) return
+          const previous = state.items[i - 1]
+          state.items[i - 1] = el
+          state.items[i] = previous
         }
-      });
+      })
     },
     moveItemDown: (state: EditZoneState, action: PayloadAction<string>) => {
-      const index = state.items.map((el: any) => el.id).indexOf(action.payload);
+      const index = state.items.map((el: any) => el.id).indexOf(action.payload)
       state.items.map((el: Item, i: number) => {
         if (i === index) {
-          if (i === state.items.length - 1) return;
-          const curr = state.items[index];
-          state.items[index] = state.items[index + 1];
-          state.items[index + 1] = curr;
+          if (i === state.items.length - 1) return
+          const curr = state.items[index]
+          state.items[index] = state.items[index + 1]
+          state.items[index + 1] = curr
         }
-      });
+      })
     },
     moveEditItems: (state: any, action: any) => {
-      const { id, targetId } = action.payload;
-      const idIndex = state.items.findIndex((el: any) => el.id === id);
+      const { id, targetId } = action.payload
+      const idIndex = state.items.findIndex((el: any) => el.id === id)
       const targetIdIndex = state.items.findIndex(
         (el: any) => el.id === targetId
-      );
-      var element = state.items[idIndex];
-      state.items.splice(idIndex, 1);
-      state.items.splice(targetIdIndex, 0, element);
+      )
+      var element = state.items[idIndex]
+      state.items.splice(idIndex, 1)
+      state.items.splice(targetIdIndex, 0, element)
     },
   },
-});
+})
 
 export const {
   getItems,
@@ -95,6 +95,6 @@ export const {
   moveItemUp,
   moveItemDown,
   moveEditItems,
-} = EditZoneReducer.actions;
+} = EditZoneReducer.actions
 
-export default EditZoneReducer.reducer;
+export default EditZoneReducer.reducer

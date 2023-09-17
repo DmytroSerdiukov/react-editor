@@ -1,15 +1,16 @@
-import React, { FC, MouseEvent, useState, useRef } from "react";
-import IconButton from "@mui/material/IconButton";
+import React, { FC, MouseEvent, useState, useRef } from 'react'
+import IconButton from '@mui/material/IconButton'
 
-import { ActionIcons } from "../../ActionIcons/ActionIcons";
-import { TextField } from "@mui/material";
-import { EditItemProps } from "../types";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import ActionsContainer from "../../ActionsContainer/ActionsContainer";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import styles from "./EditItem.module.css";
+import { ActionIcons } from '../../ActionIcons/ActionIcons'
+import { TextField } from '@mui/material'
+import { EditItemProps } from '../types'
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
+import ActionsContainer from '../../ActionsContainer/ActionsContainer'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+import styles from './EditItem.module.css'
+
 const EditItem: FC<EditItemProps> = ({
   id,
   title,
@@ -22,52 +23,52 @@ const EditItem: FC<EditItemProps> = ({
   moveItemPositionDown,
   ...props
 }): JSX.Element => {
-  const [isEdited, setEdited] = useState<boolean>(false);
-  const textfield = useRef<any>("");
+  const [isEdited, setEdited] = useState<boolean>(false)
+  const textfield = useRef<any>('')
 
   const editItemValue = (e: any): void => {
-    e.stopPropagation();
-    e.preventDefault();
-    const value = textfield.current.value;
-    const data = { id, value };
-    changeItemVal(data);
-  };
+    e.stopPropagation()
+    e.preventDefault()
+    const value = textfield.current.value
+    const data = { id, value }
+    changeItemVal(data)
+  }
 
   const onFileLoad = (e: any): void => {
-    const value = e.target.files[0].name;
-    const data = { id, value };
-    changeItemVal(data);
-  };
+    const value = e.target.files[0].name
+    const data = { id, value }
+    changeItemVal(data)
+  }
 
   const onInputFileClick = (e: any): void => {
-    e.stopPropagation();
-  };
+    e.stopPropagation()
+  }
 
   const deleteEditItem = (e: MouseEvent<HTMLElement>): void => {
-    e.stopPropagation();
-    deleteItem(id);
-  };
+    e.stopPropagation()
+    deleteItem(id)
+  }
 
   const cloneEditItem = (e: MouseEvent<HTMLElement>): void => {
-    e.stopPropagation();
-    const data = { id, title, type, value };
-    cloneItem(data);
-  };
+    e.stopPropagation()
+    const data = { id, title, type, value }
+    cloneItem(data)
+  }
 
   const onClickHandler = (e: MouseEvent<HTMLElement>): void => {
-    e.stopPropagation();
-    setEdited(!isEdited);
-  };
+    e.stopPropagation()
+    setEdited(!isEdited)
+  }
 
   const changeItemPositionUp = (e: MouseEvent<HTMLElement>): void => {
-    e.stopPropagation();
-    moveItemPositionUp(id);
-  };
+    e.stopPropagation()
+    moveItemPositionUp(id)
+  }
 
   const changeItemPositionDown = (e: MouseEvent<HTMLElement>): void => {
-    e.stopPropagation();
-    moveItemPositionDown(id);
-  };
+    e.stopPropagation()
+    moveItemPositionDown(id)
+  }
 
   return (
     <div
@@ -76,25 +77,25 @@ const EditItem: FC<EditItemProps> = ({
       {...props}
       id={`${id}`}
       style={{
-        backgroundColor: isEdited ? "#D9E7FF" : "#fff",
+        backgroundColor: isEdited ? '#D9E7FF' : '#fff',
       }}
     >
       {isEdited ? (
         <div className={styles.actions_wrapper}>
           <ActionsContainer background="#449CF4">
             <IconButton size="small" onClick={changeItemPositionDown}>
-              <ArrowDownwardIcon sx={{ fontSize: 12, color: "#fff" }} />
+              <ArrowDownwardIcon sx={{ fontSize: 12, color: '#fff' }} />
             </IconButton>
             <IconButton size="small" onClick={changeItemPositionUp}>
-              <ArrowUpwardIcon sx={{ fontSize: 12, color: "#fff" }} />
+              <ArrowUpwardIcon sx={{ fontSize: 12, color: '#fff' }} />
             </IconButton>
           </ActionsContainer>
           <ActionsContainer background="#68C2E9">
             <IconButton size="small" onClick={cloneEditItem}>
-              <ContentCopyIcon sx={{ fontSize: 12, color: "#fff" }} />
+              <ContentCopyIcon sx={{ fontSize: 12, color: '#fff' }} />
             </IconButton>
             <IconButton size="small" onClick={deleteEditItem}>
-              <DeleteOutlineIcon sx={{ fontSize: 12, color: "#fff" }} />
+              <DeleteOutlineIcon sx={{ fontSize: 12, color: '#fff' }} />
             </IconButton>
           </ActionsContainer>
         </div>
@@ -115,10 +116,10 @@ const EditItem: FC<EditItemProps> = ({
           ) : (
             <TextField
               onClick={(e: MouseEvent<HTMLElement>) => {
-                e.stopPropagation();
+                e.stopPropagation()
               }}
               defaultValue={value}
-              sx={{ width: "100%" }}
+              sx={{ width: '100%' }}
               onChange={editItemValue}
               inputRef={textfield}
               InputProps={{
@@ -129,7 +130,7 @@ const EditItem: FC<EditItemProps> = ({
         </div>
       ) : null}
     </div>
-  );
-};
+  )
+}
 
-export default EditItem;
+export default EditItem

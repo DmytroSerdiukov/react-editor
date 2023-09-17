@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import ActionsContainerStyles from "./ActionsContainer.module.css";
-import { ActionsContainerProps } from "./types";
+import React, { FC } from 'react'
+import ActionsContainerStyles from './ActionsContainer.module.css'
+import { ActionsContainerProps } from './types'
 
 const ActionsContainer: FC<ActionsContainerProps> = ({
   background,
@@ -15,7 +15,7 @@ const ActionsContainer: FC<ActionsContainerProps> = ({
     >
       {children.map((el: any) => el)}
     </div>
-  );
-};
+  )
+}
 
-export default ActionsContainer;
+export default ActionsContainer

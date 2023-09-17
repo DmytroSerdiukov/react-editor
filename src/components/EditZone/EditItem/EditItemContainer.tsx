@@ -1,40 +1,40 @@
-import React, { FC } from "react";
+import React, { FC } from 'react'
 
-import { useAppDispatch } from "../../../store/hooks";
+import { useAppDispatch } from '../../../store/hooks'
 import {
   changeItemValue,
   cloneItem,
   deleteEditItem,
   moveItemDown,
   moveItemUp,
-} from "../../../store/features/EditZoneReducer";
-import EditItem from "./EditItem";
-import { EditItemData, EditItemInfo } from "../types";
-import useDragAndDrop from "../../../hooks/DragAndDrop/DragAndDrop";
+} from '../../../store/features/EditZoneReducer'
+import EditItem from './EditItem'
+import { EditItemData, EditItemInfo } from '../types'
+import useDragAndDrop from '../../../hooks/DragAndDrop/DragAndDrop'
 
 const EditItemContainer: FC = (props: any): JSX.Element => {
-  const dnd = useDragAndDrop(props.id);
-  const dispatch = useAppDispatch();
+  const dnd = useDragAndDrop(props.id)
+  const dispatch = useAppDispatch()
 
   const changeItemVal = (data: EditItemInfo): void => {
-    dispatch(changeItemValue(data));
-  };
+    dispatch(changeItemValue(data))
+  }
 
   const cloneEditItem = (data: EditItemData): void => {
-    dispatch(cloneItem(data));
-  };
+    dispatch(cloneItem(data))
+  }
 
   const deleteItem = (id: string): void => {
-    dispatch(deleteEditItem(id));
-  };
+    dispatch(deleteEditItem(id))
+  }
 
   const moveItemPositionUp = (id: string): void => {
-    dispatch(moveItemUp(id));
-  };
+    dispatch(moveItemUp(id))
+  }
 
   const moveItemPositionDown = (id: string): void => {
-    dispatch(moveItemDown(id));
-  };
+    dispatch(moveItemDown(id))
+  }
 
   return (
     <EditItem
@@ -46,7 +46,7 @@ const EditItemContainer: FC = (props: any): JSX.Element => {
       moveItemPositionUp={moveItemPositionUp}
       moveItemPositionDown={moveItemPositionDown}
     />
-  );
-};
+  )
+}
 
-export default EditItemContainer;
+export default EditItemContainer

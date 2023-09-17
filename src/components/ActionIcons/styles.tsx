@@ -1,6 +1,6 @@
 export const styles = {
   icon: {
     fontSize: 25,
-    color: "#97AACD",
+    color: '#97AACD',
   },
-};
+}
