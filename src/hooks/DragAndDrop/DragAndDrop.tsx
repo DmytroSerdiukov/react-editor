@@ -34,6 +34,9 @@ const useDragAndDrop = (props: any) => {
     }
     const id = e.dataTransfer.getData("id");
     console.log(id);
+    if (id.includes("toolbar")) {
+      return;
+    }
     const targetId = e.target.id;
     const data: any = { id, targetId };
     if (id !== targetId) return dispatch(moveEditItems(data));
