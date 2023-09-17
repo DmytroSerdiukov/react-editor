@@ -9,9 +9,17 @@ const Preview = () => {
     <Box sx={styles.wrapper}>
       {items.map((el: any) => {
         if (el.type === 0)
-          return <Typography key={el.id}>{el.value}</Typography>
+          return (
+            <Typography variant="h6" key={el.id}>
+              {el.value}
+            </Typography>
+          )
         if (el.type === 1)
-          return <Typography key={el.id}>{el.value}</Typography>
+          return (
+            <Typography variant="body1" key={el.id}>
+              {el.value}
+            </Typography>
+          )
         if (el.type === 2)
           return (
             <img
@@ -22,6 +30,7 @@ const Preview = () => {
               alt={el.value}
             />
           )
+
         if (el.type === 3)
           return (
             <Button
